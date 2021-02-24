@@ -18,6 +18,6 @@ from django.urls import path, include
 from recipe.urls import router
 
 urlpatterns = [
-    path('pretender/api/', include(router.urls)),
-    path('pretender/admin/', admin.site.urls),
+    path('api/', include(router.urls)),
+    path('admin/', admin.site.urls),
 ]
