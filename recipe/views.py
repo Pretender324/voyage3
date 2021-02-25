@@ -24,7 +24,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
             }, status=status.HTTP_201_CREATED)
         return Response({
             'message': "Recipe creation failed!",
-            "recipe": "title, making_time, serves, ingredients, cost"
+            "required": "title, making_time, serves, ingredients, cost"
         }, status=status.HTTP_400_BAD_REQUEST)
 
     def list(self, request, *args, **kwargs):
@@ -36,7 +36,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
             return self.get_paginated_response(serializer.data)
 
         serializer = self.get_serializer(queryset, many=True)
-        return Response({"recipe": serializer.data}, status=status.HTTP_200_OK)
+        return Response({"recipes": serializer.data}, status=status.HTTP_200_OK)
 
     def retrieve(self, request, *args, **kwargs):
         try:
@@ -80,7 +80,3 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     def perform_destroy(self, instance):
         instance.delete()
-
-
-def topview(request):
-    return Response(status=status.HTTP_404_NOT_FOUND)
