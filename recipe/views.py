@@ -21,11 +21,11 @@ class RecipeViewSet(viewsets.ModelViewSet):
             return Response({
                 'message': "Recipe successfully created!",
                 "recipe": [serializer.data]
-            }, status=status.HTTP_201_CREATED)
+            }, status=status.HTTP_200_OK)
         return Response({
             'message': "Recipe creation failed!",
             "required": "title, making_time, serves, ingredients, cost"
-        }, status=status.HTTP_400_BAD_REQUEST)
+        }, status=status.HTTP_200_OK)
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
@@ -74,7 +74,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         try:
             instance = self.get_object()
             self.perform_destroy(instance)
-            return Response({"message": "Recipe successfully removed!"}, status=status.HTTP_204_NO_CONTENT)
+            return Response({"message": "Recipe successfully removed!"}, status=status.HTTP_200_OK)
         except:
             return Response({"message": "No Recipe found"}, status=status.HTTP_404_NOT_FOUND)
 
