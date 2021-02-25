@@ -80,3 +80,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     def perform_destroy(self, instance):
         instance.delete()
+
+
+def topview(request):
+    return Response(status=status.HTTP_404_NOT_FOUND)
